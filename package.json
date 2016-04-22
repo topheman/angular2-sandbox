@@ -1,7 +1,7 @@
 {
-  "name": "webpack-babel-starter",
-  "version": "0.2.0",
-  "description": "Webpack Babel Starter Kit",
+  "name": "angular2-sandbox",
+  "version": "0.0.1",
+  "description": "Angular2 project",
   "scripts": {
     "start": "npm run webpack",
     "test": "npm run lint",
@@ -16,29 +16,24 @@
     "webpack": "./node_modules/.bin/webpack-dev-server --progress --colors --hot --inline",
     "webpack-build": "./node_modules/.bin/webpack --progress",
     "webpack-build-prod": "./node_modules/.bin/webpack --progress -p",
-    "generate-dist-readme": "node bin/generate-dist-readme.js",
-    "contributing-install": "./contributing/bin/contributing-install.sh",
-    "contributing-test": "./contributing/bin/contributing-test.sh"
+    "generate-dist-readme": "node bin/generate-dist-readme.js"
   },
   "pre-commit": [
     "test"
   ],
   "keywords": [
     "Webpack",
-    "Babel",
+    "TypeScript",
     "ES6",
-    "Sass",
-    "Eslint",
-    "Starter Kit",
-    "boilerplate"
+    "Sass"
   ],
   "author": "Christophe Rosset <tophe@topheman.com> (http://labs.topheman.com/)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/topheman/webpack-babel-starter.git"
+    "url": "https://github.com/topheman/angular2-sandbox.git"
   },
   "bugs": {
-    "url": "https://github.com/topheman/webpack-babel-starter/issues"
+    "url": "https://github.com/topheman/angular2-sandbox/issues"
   },
   "license": "MIT",
   "devDependencies": {
