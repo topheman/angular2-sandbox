@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run webpack",
     "test": "npm run lint",
-    "lint": "./node_modules/.bin/eslint src",
+    "lint": "./node_modules/.bin/tslint 'src/**/*.ts'",
     "clean-dist": "node ./bin/clean-dist.js",
     "serve-build": "echo 'Serving distribution folder build/dist' && npm run serve-dist",
     "serve-dist": "./node_modules/.bin/serve build/dist",
@@ -39,6 +39,7 @@
   "license": "MIT",
   "devDependencies": {
     "awesome-typescript-loader": "^0.17.0",
+    "codelyzer": "0.0.15",
     "css-loader": "^0.23.1",
     "del": "^2.2.0",
     "eslint": "^1.10.3",
@@ -59,6 +60,8 @@
     "sass-loader": "^3.1.2",
     "serve": "^1.4.0",
     "style-loader": "^0.13.0",
+    "tslint": "^3.8.1",
+    "tslint-loader": "^2.1.4",
     "typescript": "^1.8.10",
     "typings": "^0.8.1",
     "url-loader": "^0.5.7",

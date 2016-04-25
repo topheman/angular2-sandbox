@@ -135,9 +135,9 @@ const preLoaders = [];
 if (LINTER) {
   log.info('webpack', 'LINTER ENABLED');
   preLoaders.push({
-    test: /\.js$/,
+    test: /\.ts$/,
     exclude: /node_modules/,
-    loader: 'eslint-loader'
+    loader: 'tslint-loader'
   });
 }
 else {

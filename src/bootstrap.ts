@@ -1,10 +1,10 @@
-/* eslint-disable max-len */
-/** This is how you use the environments variables passed by the webpack.DefinePlugin **/
+/* This is how you use the environments variables passed by the webpack.DefinePlugin */
 
 /**
  * The linter can be disabled via LINTER=false env var - show a message in console to inform if it's on or off
  * Won't show in production
  */
+/* tslint:disable */
 if (process.env.NODE_ENV !== 'production') {
   if (!process.env.LINTER) {
     console.warn('Linter disabled, make sure to run your code against the linter, otherwise, if it fails, your commit will be rejected.');
@@ -30,12 +30,14 @@ if (process.env.NODE_ENV === 'mock') {
 if (process.env.DEVTOOLS && process.env.NODE_ENV !== 'production') {
   console.info(`You're on DEVTOOLS mode, you may have access to tools enhancing developer experience - off to you to choose to disable them in production ...`);
 }
+/* tslint:enable */
 
 /** This is where the "real code" start */
 
 const main = () => {
   console.log('Welcome! More infos at https://github.com/topheman/angular2-sandbox');
-  // the following is nothing extraordinary ... just to show that the requiring of images work (as well from sass and require / direct and inlined)
+  // the following is nothing extraordinary ...
+  // just to show that the requiring of images work (as well from sass and require / direct and inlined)
   if (global.document && global.document.querySelector) {
     const logo = document.querySelector('.logo');
 
@@ -44,7 +46,7 @@ const main = () => {
     let current = 0;
     document.getElementById('copyright-year').innerHTML = `© ${(new Date()).getFullYear()} `;
     logo.addEventListener('mouseover', () => {
-      const body = document.getElementsByTagName('body')[0];
+      const body = <Element>document.getElementsByTagName('body')[0];
       cssClasses.forEach(name => body.classList.remove(name));
       current = (current + 1) % cssClasses.length;
       body.classList.add(cssClasses[current]);
