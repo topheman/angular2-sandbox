@@ -10,6 +10,9 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const myLocalIp = require('my-local-ip');
 const common = require('./common');
+
+const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+
 const plugins = [];
 
 const BANNER = common.getBanner();
@@ -64,7 +67,7 @@ if(!FAIL_ON_ERROR) {
 }
 
 plugins.push(new HtmlWebpackPlugin({
-  title: 'Topheman - Webpack Babel Starter Kit',
+  title: 'Topheman - Angular2 Sandbox',
   template: 'src/index.ejs', // Load a custom template
   inject: MODE_DEV_SERVER, // inject scripts in dev-server mode - in build mode, use the template tags
   MODE_DEV_SERVER: MODE_DEV_SERVER,
@@ -87,6 +90,10 @@ plugins.push(new webpack.DefinePlugin({
     'LINTER': LINTER // You can choose to log a warning in dev if the linter is disabled
   }
 }));
+
+// Do type checking in a separate process, so webpack don't need to wait.
+// https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
+plugins.push(new ForkCheckerPlugin());
 
 if (OPTIMIZE) {
   plugins.push(new webpack.optimize.DedupePlugin());
@@ -142,7 +149,7 @@ else {
 const config = {
   bail: FAIL_ON_ERROR,
   entry: {
-    'bundle': './src/bootstrap.js',
+    'bundle': './src/bootstrap.ts',
     'main': './src/style/main.scss'
   },
   output: {
@@ -161,9 +168,9 @@ const config = {
     preLoaders: preLoaders,
     loaders: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
+        test: /\.ts$/,
+        exclude: [/\.(spec|e2e)\.ts$/],
+        loader: 'awesome-typescript-loader'
       },
       {
         test: /\.json$/,
