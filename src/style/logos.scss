@@ -9,7 +9,11 @@
     transition: background 0.5s;
   }
   body.typescript {
-    background-image: url('../assets/images/TypeScript-logo.png');
+    background-image: url('../assets/images/TypeScript-logo.svg');
+    background-size: 45%;
+  }
+  body.angular {
+    background-image: url('../assets/images/angular-logo.svg');
     background-size: 45%;
   }
   body.npm {

@@ -45,7 +45,7 @@ const main = () => {
     const logo = document.querySelector('.logo');
 
     /** display logos */
-    const cssClasses = ['typescript', 'npm', 'eslint', 'sass'];
+    const cssClasses = ['typescript', 'angular', 'npm', 'sass'];
     let current = 0;
     document.getElementById('copyright-year').innerHTML = `© ${(new Date()).getFullYear()} `;
     logo.addEventListener('mouseover', () => {
