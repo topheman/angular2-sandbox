@@ -1,4 +1,5 @@
-import welcome from './scripts/welcome.ts'; // just to try some module import ...
+import {bootstrap}    from 'angular2/platform/browser';
+import {AppComponent} from './app.component.ts';
 
 /* This is how you use the environments variables passed by the webpack.DefinePlugin */
 
@@ -36,46 +37,4 @@ if (process.env.DEVTOOLS && process.env.NODE_ENV !== 'production') {
 
 /** This is where the "real code" start */
 
-const main = () => {
-  welcome();
-  // the following is nothing extraordinary ...
-  // just to show that the requiring of images work (as well from sass and require / direct and inlined)
-  if (global.document && global.document.querySelector) {
-    const testRequireEnsureLink = document.querySelector('.test-require-ensure');
-    const logo = document.querySelector('.logo');
-
-    /** display logos */
-    const cssClasses = ['typescript', 'angular', 'npm', 'sass'];
-    let current = 0;
-    document.getElementById('copyright-year').innerHTML = `© ${(new Date()).getFullYear()} `;
-    logo.addEventListener('mouseover', () => {
-      const body = <Element>document.getElementsByTagName('body')[0];
-      cssClasses.forEach(name => body.classList.remove(name));
-      current = (current + 1) % cssClasses.length;
-      body.classList.add(cssClasses[current]);
-    });
-
-    testRequireEnsureLink.addEventListener('click', () => {
-      // the following won't be included in the original build but will be lazy loaded only when needed
-      require.ensure([], (require) => {
-
-        // necessary for TypeScript ... :(
-        interface CssUtils {
-          toggleCssClassName: Function;
-        }
-
-        const cssUtils = <CssUtils>require('./scripts/css-utils.ts');
-        cssUtils.toggleCssClassName(logo, 'rotate');
-        cssUtils.toggleCssClassName(testRequireEnsureLink, 'active');
-
-        // so you can't simply do that kind of thing ... :
-
-        // const toggleCssClassName = require('./scripts/css-utils.ts').toggleCssClassName;
-        // toggleCssClassName(logo, 'rotate');
-        // toggleCssClassName(testRequireEnsureLink, 'active');
-      });
-    });
-  }
-};
-
-main();
+bootstrap(AppComponent);

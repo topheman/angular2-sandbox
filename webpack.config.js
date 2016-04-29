@@ -149,7 +149,11 @@ else {
 const config = {
   bail: FAIL_ON_ERROR,
   entry: {
-    'bundle': './src/bootstrap.ts',
+    'bundle': [
+      './src/polyfills.ts',
+      './src/vendor.ts',
+      './src/bootstrap.ts'
+    ],
     'main': './src/style/main.scss'
   },
   output: {

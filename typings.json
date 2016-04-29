@@ -1,5 +1,8 @@
 {
   "name": "angular2-sandbox",
   "version": false,
-  "dependencies": {}
+  "dependencies": {},
+  "ambientDependencies": {
+    "core-js": "registry:dt/core-js#0.0.0+20160317120654"
+  }
 }
