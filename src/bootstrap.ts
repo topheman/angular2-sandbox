@@ -1,5 +1,6 @@
 import {bootstrap}    from 'angular2/platform/browser';
 import {AppComponent} from './app.component.ts';
+import {enableProdMode} from 'angular2/core';
 
 /* This is how you use the environments variables passed by the webpack.DefinePlugin */
 
@@ -17,6 +18,9 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 else {
+  // remove the console.log + set the app in prod mode - in dev mode, angular does extra checks see link bellow
+  // https://angular.io/docs/ts/latest/api/core/ApplicationRef-class.html
+  enableProdMode();
   if (process.env.DEVTOOLS) {
     console.info('Turn on the "Sources" tab of your devtools to inspect original source code - thanks to sourcemaps!');
   }
