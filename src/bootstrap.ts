@@ -1,6 +1,13 @@
-import {bootstrap}    from 'angular2/platform/browser';
-import {AppComponent} from './app.component.ts';
+import {bootstrap} from 'angular2/platform/browser';
+
+import {ROUTER_PROVIDERS} from 'angular2/router';
+
+import {provide} from 'angular2/core';
+import {LocationStrategy, HashLocationStrategy} from 'angular2/platform/common';
+
 import {enableProdMode} from 'angular2/core';
+
+import {App} from './app';
 
 /* This is how you use the environments variables passed by the webpack.DefinePlugin */
 
@@ -41,4 +48,7 @@ if (process.env.DEVTOOLS && process.env.NODE_ENV !== 'production') {
 
 /** This is where the "real code" start */
 
-bootstrap(AppComponent);
+bootstrap(App, [
+  ROUTER_PROVIDERS,
+  provide(LocationStrategy, {useClass: HashLocationStrategy})
+]);

@@ -168,6 +168,13 @@ const config = {
   devServer: {
     host: LOCALHOST ? 'localhost' : myLocalIp()
   },
+  resolve: {
+    /*
+     * Allow to require modules without specifying ".ts" as extension
+     * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
+     */
+    extensions: ['', '.ts', '.js'],
+  },
   module: {
     preLoaders: preLoaders,
     loaders: [
@@ -190,6 +197,11 @@ const config = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.html$/,
+        loader: 'raw-loader',
+        exclude: [path.resolve(__dirname, 'src/index.html')]
       },
       { test: /\.(png)$/, loader: 'url-loader?limit=' + ASSETS_LIMIT + '&name=assets/[hash].[ext]' },
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=' + ASSETS_LIMIT + '&mimetype=application/font-woff&name=assets/[hash].[ext]' },
