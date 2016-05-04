@@ -2,6 +2,6 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'home',
-  template: require('./home.html').toString()
+  template: require('./About.html').toString()
 })
-export class Home {}
+export default class About {}

@@ -7,7 +7,7 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {enableProdMode} from '@angular/core';
 
-import {App} from './app';
+import App from './containers/App/App.ts';
 
 /* This is how you use the environments variables passed by the webpack.DefinePlugin */
 

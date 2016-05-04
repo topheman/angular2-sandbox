@@ -4,8 +4,8 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
-import {Home} from './home/home.component.ts';
-import {About} from './about/about.component.ts';
+import Home from '../Home/Home.ts';
+import About from '../About/About.ts';
 
 /*
  * App Component
@@ -40,7 +40,7 @@ import {About} from './about/about.component.ts';
   { path: '/about', name: 'About', component: About },
   { path: '/**', redirectTo: ['Home']}
 ])
-export class App {
+export default class App {
   name = 'Angular2 Sandbox';
   ngOnInit() {
     console.log('App started');
