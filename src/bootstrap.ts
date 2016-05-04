@@ -1,11 +1,11 @@
-import {bootstrap} from 'angular2/platform/browser';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 
-import {ROUTER_PROVIDERS} from 'angular2/router';
+import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
-import {provide} from 'angular2/core';
-import {LocationStrategy, HashLocationStrategy} from 'angular2/platform/common';
+import {provide} from '@angular/core';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
-import {enableProdMode} from 'angular2/core';
+import {enableProdMode} from '@angular/core';
 
 import {App} from './app';
 

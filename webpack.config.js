@@ -151,7 +151,6 @@ const config = {
   entry: {
     'bundle': [
       './src/polyfills.ts',
-      './src/vendor.ts',
       './src/bootstrap.ts'
     ],
     'main': './src/style/main.scss'
