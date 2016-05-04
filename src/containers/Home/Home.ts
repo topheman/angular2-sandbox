@@ -4,4 +4,6 @@ import {Component} from '@angular/core';
   selector: 'home',
   template: require('./Home.html').toString()
 })
-export default class Home {}
+export default class Home {
+  DEVTOOLS = process.env.DEVTOOLS;
+}

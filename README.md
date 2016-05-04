@@ -2,7 +2,7 @@ angular2-sandbox
 ================
 I'm launching this project to get me started with **TypeScript** and **Angular2**. I have already been working with both Angular1 and React, using ES6, Webpack and other tools.
 
-To bootstrap this project, I'm using my own boilerplate [topheman/webpack-babel-starter](https://github.com/topheman/webpack-babel-starter) that I have adapted from Babel / Eslint to TypeScript / TSLint.
+To bootstrap this project, I've used my own boilerplate [topheman/webpack-babel-starter](https://github.com/topheman/webpack-babel-starter) that I have adapted from Babel / Eslint to TypeScript / TSLint.
 
 This is a work in progress, I am still discovering TypeScript and Angular2. This project will evolve in the next weeks.
 
@@ -13,9 +13,11 @@ What's in there ?
 * Development / Build / Lint tasks
 * [TypeScript](https://www.typescriptlang.org/) transpiler
 * [TSLint](http://palantir.github.io/tslint/)
-* Angular2 setup (still in progress)
+* Angular2 setup
 * Sass support
 * Ship a version of your site with sourcemaps (see demo)
+
+**[ONLINE DEMO](https://topheman.github.io/angular2-sandbox/)**
 
 ###Install
 
