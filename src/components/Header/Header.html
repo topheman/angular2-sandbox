@@ -1,0 +1,38 @@
+<div>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" (click)="menuCollapsed = !menuCollapsed" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a [routerLink]="['Home']" class="navbar-brand logo">
+          <span>{{title}}</span>
+        </a>
+      </div>
+
+      <div [class]="menuCollapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse in'" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a [routerLink]="['About']">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <ul class="site-networks">
+    <li class="twitter">
+      <a href="https://twitter.com/topheman" title="@topheman on twitter">
+        <span class="icon"></span>
+        <span class="desc">Twitter</span>
+      </a>
+    </li>
+    <li class="github">
+      <a href="https://github.com/topheman/angular2-sandbox" title="Fork on github">
+        <span class="icon"></span>
+        <span class="desc">Github</span>
+      </a>
+    </li>
+  </ul>
+</div>

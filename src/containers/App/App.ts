@@ -4,8 +4,13 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
+// containers
 import Home from '../Home/Home.ts';
 import About from '../About/About.ts';
+
+// components
+import Header from '../../components/Header/Header.ts';
+import Footer from '../../components/Footer/Footer.ts';
 
 /*
  * App Component
@@ -15,25 +20,12 @@ import About from '../About/About.ts';
   selector: 'my-app',
   encapsulation: ViewEncapsulation.None, // no style encapsulation: https://angular.io/docs/js/latest/api/core/ViewEncapsulation-enum.html
   template: `
-  <header>
-    <nav>
-      <ul>
-        <li>
-          <a [routerLink]="['Home']">Home</a>
-        </li>
-        <li>
-          <a [routerLink]="['About']">About</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main>
+  <topheman-header title="Angular2 Sandbox"></topheman-header>
+  <div class="container">
     <router-outlet></router-outlet>
-  </main>
-  <footer>
-    Footer
-  </footer>`,
-  directives: [ROUTER_DIRECTIVES]
+  </div>
+  <topheman-footer></topheman-footer>`,
+  directives: [ROUTER_DIRECTIVES, Header, Footer]
 })
 @RouteConfig([
   { path: '/', name: 'Home', component: Home, useAsDefault: true },
