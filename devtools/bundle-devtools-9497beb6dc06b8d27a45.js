@@ -4,7 +4,7 @@
  * Angular2 project
  * 
  * @version v0.2.1 - 05/05/2016
- * @revision #b259822 - https://github.com/topheman/angular2-sandbox/tree/b259822e2bc5816de446ddc548d120ddf39c7a99
+ * @revision #a8f373e - https://github.com/topheman/angular2-sandbox/tree/a8f373effb89c8a7533b2dd0d419d5c66626e15e
  * @author Christophe Rosset <tophe@topheman.com> (http://labs.topheman.com/)
  * @copyright 2016(c) Christophe Rosset <tophe@topheman.com> (http://labs.topheman.com/)
  * @license MIT
@@ -53021,7 +53021,7 @@
 /* 583 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <p>This is my sandbox project on which I experiment on <strong>Angular2</strong> and <strong>TypeScript</strong>. I've used my own boilerplate <a href=\"https://github.com/topheman/webpack-babel-starter\" title=\"topheman/webpack-babel-starter on github\">topheman/webpack-babel-starter</a> that I ported from <strong>Babel</strong>/<strong>ESLint</strong> to <strong>TypeScript</strong>/<strong>TSLint</strong> to bootstrap the project.</p>\n  <p></p>\n  <p>This is still a work in progress ...</p>\n  <div *ngIf=\"DEVTOOLS === false\">\n    <p>This is the <strong>production packaged</strong> version (html/css/js uglified). You can <a href=\"./devtools/\" title=\"Test with devtools & sourcemaps\" style=\"font-weight: bold\">test the site in debug mode here</a>, where you'll have access to:</p>\n    <ul>\n      <li>sourcemaps for scss/ts</li>\n    </ul>\n    <p class=\"text-center\"><a href=\"./devtools/\" title=\"Test with devtools & sourcemaps\" class=\"btn btn-default btn-primary\" style=\"white-space: pre-wrap\">I'm a developer, I want to see what's under the hood!</a></p>\n  </div>\n  <div *ngIf=\"DEVTOOLS === true\">\n    <p>This is the <strong>development packaged</strong> version (<a href=\"../\" title=\"checkout in production mode\">the production version is here</a>). In the current mode, you have access to:</p>\n    <ul>\n      <li>sourcemaps for scss/ts (open the sources tab of your developer tools)</li>\n    </ul>\n    <p>Those features are meant to be used only in the development but I felt it would be a great way to let you discover them.</p>\n  </div>\n</div>\n"
+	module.exports = "<div>\n  <p>This is my sandbox project on which I experiment on <strong>Angular2</strong> and <strong>TypeScript</strong>. I've used my own boilerplate <a href=\"https://github.com/topheman/webpack-babel-starter\" title=\"topheman/webpack-babel-starter on github\">topheman/webpack-babel-starter</a> that I ported from <strong>Babel</strong>/<strong>ESLint</strong> to <strong>TypeScript</strong>/<strong>TSLint</strong> to bootstrap the project.</p>\n  <p></p>\n  <p>This is still a work in progress ...</p>\n  <div *ngIf=\"DEVTOOLS === false\">\n    <p>This is the <strong>production packaged</strong> version (html/css/js uglified). You can <a href=\"./devtools/\" title=\"Test with devtools & sourcemaps\" style=\"font-weight: bold\">test the site in debug mode here</a>, where you'll have access to:</p>\n    <ul>\n      <li>sourcemaps for <code>scss</code>/<code>ts</code></li>\n    </ul>\n    <p class=\"text-center\"><a href=\"./devtools/\" title=\"Test with devtools & sourcemaps\" class=\"btn btn-default btn-primary\" style=\"white-space: pre-wrap\">I'm a developer, I want to see what's under the hood!</a></p>\n  </div>\n  <div *ngIf=\"DEVTOOLS === true\">\n    <p>This is the <strong>development packaged</strong> version (<a href=\"../\" title=\"checkout in production mode\">the production version is here</a>). In the current mode, you have access to:</p>\n    <ul>\n      <li>sourcemaps for scss/ts (open the sources tab of your developer tools)</li>\n    </ul>\n    <p>Those features are meant to be used only in the development but I felt it would be a great way to let you discover them.</p>\n  </div>\n</div>\n"
 
 /***/ },
 /* 584 */
@@ -53049,7 +53049,7 @@
 /* 585 */
 /***/ function(module, exports) {
 
-	module.exports = "<p>A little about page to test the router ... Features will come.</p>\n"
+	module.exports = "<p>A little about page to test the router ... Features will come soon.</p>\n"
 
 /***/ },
 /* 586 */
@@ -53117,4 +53117,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=bundle-devtools-dfe8d0f9f8fb2bd68932.js.map
+//# sourceMappingURL=bundle-devtools-9497beb6dc06b8d27a45.js.map
