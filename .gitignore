@@ -1,0 +1,8 @@
+node_modules
+.idea
+build
+
+# Typing #
+/src/typings/tsd/
+/typings/
+/tsd_typings/
