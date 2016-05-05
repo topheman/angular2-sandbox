@@ -1,5 +1,9 @@
 angular2-sandbox
 ================
+[![Build Status](https://travis-ci.org/topheman/angular2-sandbox.svg?branch=master)](https://travis-ci.org/topheman/angular2-sandbox)
+
+<img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/angular-logo.svg" width="200"><img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/webpack-logo.png" width="200"><img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/TypeScript-logo.svg" width="200">
+
 I'm launching this project to get me started with **TypeScript** and **Angular2**. I have already been working with both Angular1 and React, using ES6, Webpack and other tools.
 
 To bootstrap this project, I've used my own boilerplate [topheman/webpack-babel-starter](https://github.com/topheman/webpack-babel-starter) that I have adapted from Babel / Eslint to TypeScript / TSLint.
