@@ -26,12 +26,12 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
     <button type="button" class="btn btn-primary" (click)="create$.next(generateRandomColorInterval())">Random</button>
     <button type="button" class="btn btn-primary" (click)="clearAll$.next()">Clear All</button>
     <button type="button" class="btn btn-primary pull-right hidden-xs hidden-sm disabled">Pause</button>
-    <button type="button" class="btn btn-primary pull-right hidden-xs hidden-sm disabled" [style.marginRight]="'5px'">Restart</button>
+    <button type="button" class="btn btn-primary pull-right hidden-xs hidden-sm" [style.marginRight]="'5px'" (click)="toggleStartStop()">{{playing ? 'Stop' : 'Restart'}}</button>
   </form>
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 items-display items-list">
       <h4>List</h4>
-      <table class="table-condensed">
+      <table class="table-condensed table-responsive">
         <thead>
           <tr>
             <th>Color</th>
@@ -51,7 +51,7 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 items-display items-log">
       <h4>Log</h4>
       <button type="button" class="btn btn-primary hidden-md hidden-lg disabled">Pause</button>
-      <button type="button" class="btn btn-primary hidden-md hidden-lg disabled">Restart</button>
+      <button type="button" class="btn btn-primary hidden-md hidden-lg" (click)="toggleStartStop()">{{playing ? 'Stop' : 'Restart'}}</button>
       <ul>
         <li *ngFor="let log of logs">
           [<i>{{log.timer}}ms</i>]
@@ -70,13 +70,26 @@ export default class ColorInterval {
   private generateRandomColorInterval;
   private tick$;
   private logs = [];
+  private playing;
+  private toggleStartStop;
   constructor(store: Store<any>) {
     this.generateRandomColorInterval = generateRandomColorInterval;
     this.items = store.select('colorInterval');
     this.create$ = new Subject();
     this.delete$ = new Subject();
     this.clearAll$ = new Subject();
-    this.tick$ = compileTickObservable(this.items);
+    const stop$ = new Subject();
+    const start$ = new Subject();
+    this.playing = true;
+    this.toggleStartStop = () => {
+      if (this.playing) {
+        this.playing = false;
+        return stop$.next(true);
+      }
+      this.playing = true;
+      return start$.next(true);
+    };
+    this.tick$ = compileTickObservable(this.items, stop$, start$);
     const subCreate = this.create$.subscribe(item => store.dispatch(createItem(item)));
     const subDelete = this.delete$.subscribe(item => store.dispatch(deleteItem(item)));
     const subClearAll = this.clearAll$.subscribe(item => store.dispatch(clearAll()));
@@ -87,5 +100,5 @@ export default class ColorInterval {
 }
 
 /* tslint:disable */
-console.info('Pause/Restart stream are not yet implemented');
+console.info('Pause stream are not yet implemented');
 /* tslint:enable */
