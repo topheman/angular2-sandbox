@@ -1,10 +1,15 @@
 import colorNames from './colorNames.ts';
-import {minInterval} from '../store/models/ColorIntervalItem.ts';
 
-export const generateRandomColorInterval = (interval = minInterval, maxInterval = 5000) => ({
-  color: colorNames[Math.floor(Math.random() * (colorNames.length - 1) )],
-  interval: (() => {
-    const rand = Math.floor(Math.random() * maxInterval);
-    return rand - rand % interval || interval;
-  })()
+const minInterval = 500;
+const maxInterval = 5000;
+
+export const generateRandomColor = () => (colorNames[Math.floor(Math.random() * (colorNames.length - 1) )]);
+
+export const normalizeInterval = (interval) => (interval - interval % minInterval || minInterval);
+
+export const generateRandomInterval = () => normalizeInterval(Math.floor(Math.random() * maxInterval));
+
+export const generateRandomColorInterval = () => ({
+  color: generateRandomColor(),
+  interval: generateRandomInterval()
 });
