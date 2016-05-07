@@ -1,6 +1,5 @@
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Rx'; // use this instead of 'rxjs/Observable' to be able to add operators
 import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/distinct';
 
 import {minInterval} from '../../utils';

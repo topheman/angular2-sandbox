@@ -25,8 +25,7 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
     <button type="submit" class="btn btn-default">Submit</button>
     <button type="button" class="btn btn-primary" (click)="create$.next(generateRandomColorInterval())">Random</button>
     <button type="button" class="btn btn-primary" (click)="clearAll$.next()">Clear All</button>
-    <button type="button" class="btn btn-primary pull-right hidden-xs hidden-sm disabled">Pause</button>
-    <button type="button" class="btn btn-primary pull-right hidden-xs hidden-sm" [style.marginRight]="'5px'" (click)="toggleStartStop()">{{playing ? 'Stop' : 'Restart'}}</button>
+    <button type="button" class="btn btn-primary pull-right hidden-xs hidden-sm" (click)="toggleStartStop()">{{playing ? 'Stop' : 'Restart'}}</button>
   </form>
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 items-display items-list">
@@ -50,7 +49,6 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
     </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 items-display items-log">
       <h4>Log</h4>
-      <button type="button" class="btn btn-primary hidden-md hidden-lg disabled">Pause</button>
       <button type="button" class="btn btn-primary hidden-md hidden-lg" (click)="toggleStartStop()">{{playing ? 'Stop' : 'Restart'}}</button>
       <ul>
         <li *ngFor="let log of logs">
@@ -98,7 +96,3 @@ export default class ColorInterval {
     });
   }
 }
-
-/* tslint:disable */
-console.info('Pause stream are not yet implemented');
-/* tslint:enable */
