@@ -1,7 +1,7 @@
 import colorNames from './colorNames.ts';
 
-const minInterval = 500;
-const maxInterval = 5000;
+export const minInterval = 500;
+export const maxInterval = 5000;
 
 export const generateRandomColor = () => (colorNames[Math.floor(Math.random() * (colorNames.length - 1) )]);
 
