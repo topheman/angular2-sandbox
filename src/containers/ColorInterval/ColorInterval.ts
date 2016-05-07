@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Subject} from 'rxjs/Subject';
 
-import {createItem, clearAll} from '../../store/reducers/colorInterval.ts';
+import {createItem, clearAll, deleteItem} from '../../store/reducers/colorInterval.ts';
 import {generateRandomColorInterval} from '../../utils/index.ts';
 
 @Component({
@@ -30,12 +30,14 @@ import {generateRandomColorInterval} from '../../utils/index.ts';
           <tr>
             <th>Color</th>
             <th>Interval</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of items | async" [id]="item.id">
             <td [style.backgroundColor]="item.color">{{item.color}}</td>
             <td>{{item.interval}}</td>
+            <td><span class="glyphicon glyphicon-remove cursor-pointer" aria-hidden="true" (click)="delete$.next({id: item.id})"></span></td>
           </tr>
         </tbody>
       </table>
@@ -64,14 +66,17 @@ import {generateRandomColorInterval} from '../../utils/index.ts';
 export default class ColorInterval {
   private items;
   private create$;
+  private delete$;
   private clearAll$;
   private generateRandomColorInterval;
   constructor(store: Store<any>) {
     this.generateRandomColorInterval = generateRandomColorInterval;
     this.items = store.select('colorInterval');
     this.create$ = new Subject();
+    this.delete$ = new Subject();
     this.clearAll$ = new Subject();
     const subCreate = this.create$.subscribe(item => store.dispatch(createItem(item)));
+    const subDelete = this.delete$.subscribe(item => store.dispatch(deleteItem(item)));
     const subClearAll = this.clearAll$.subscribe(item => store.dispatch(clearAll()));
   }
 }
