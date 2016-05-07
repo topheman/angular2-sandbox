@@ -1,6 +1,7 @@
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/merge';
+import 'rxjs/add/operator/distinct';
 
 import {minInterval} from '../../utils';
 
@@ -33,6 +34,7 @@ export const compileTickObservable = (items$) => {
     .filter(data => {
       return matchItemsIntervalToTimer(data.items, data.timer).length; // filter the timers without any matches
     })
+    .distinct((previousData, nextData) => previousData.timer === nextData.timer) // make sure we dont emit twice the same timer
     .map(data => ({items: matchItemsIntervalToTimer(data.items, data.timer), timer: data.timer })); // only return the matches for this time
 
   return matchedItems$;
