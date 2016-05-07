@@ -8,20 +8,23 @@ import {generateRandomColorInterval} from '../../utils/index.ts';
 @Component({
   selector: 'color-interval',
   template: `
-    <form class="form-inline" (submit)="create$.next({color: inputColor.value, interval: inputInterval.value})">
-      <div class="form-group">
-        <label for="input-color">Color</label>
-        <input #inputColor id="input-color" class="form-control" type="text" placeholder="Enter a valid color code"/>
-      </div>
-      <div class="form-group">
-        <label for="input-intervall">Interval</label>
-        <input #inputInterval id="input-interval" class="form-control" type="number" placeholder="Enter an interval"/>
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-      <button type="button" class="btn btn-primary" (click)="create$.next(generateRandomColorInterval())">Random</button>
-      <button type="button" class="btn btn-primary" (click)="clearAll$.next()">Clear All</button>
-    </form>
+  <form class="form-inline" (submit)="create$.next({color: inputColor.value, interval: inputInterval.value})">
+    <div class="form-group">
+      <label for="input-color">Color</label>
+      <input #inputColor id="input-color" class="form-control" type="text" placeholder="Enter a valid color code"/>
+    </div>
+    <div class="form-group">
+      <label for="input-intervall">Interval</label>
+      <input #inputInterval id="input-interval" class="form-control" type="number" placeholder="Enter an interval"/>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="button" class="btn btn-primary" (click)="create$.next(generateRandomColorInterval())">Random</button>
+    <button type="button" class="btn btn-primary" (click)="clearAll$.next()">Clear All</button>
+    <button type="button" class="btn btn-primary pull-right hidden-xs hidden-sm">Restart</button>
+  </form>
+  <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 items-display items-list">
+      <h4>List</h4>
       <table class="table-condensed">
         <thead>
           <tr>
@@ -30,7 +33,7 @@ import {generateRandomColorInterval} from '../../utils/index.ts';
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of items | async">
+          <tr *ngFor="let item of items | async" [id]="item.id">
             <td [style.backgroundColor]="item.color">{{item.color}}</td>
             <td>{{item.interval}}</td>
           </tr>
@@ -38,6 +41,8 @@ import {generateRandomColorInterval} from '../../utils/index.ts';
       </table>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 items-display items-log">
+      <h4>Log</h4>
+      <button type="button" class="btn btn-primary hidden-md hidden-lg">Restart</button>
       <table class="table-condensed">
         <thead>
           <tr>
@@ -53,6 +58,7 @@ import {generateRandomColorInterval} from '../../utils/index.ts';
         </tbody>
       </table>
     </div>
+  </div>
     `
 })
 export default class ColorInterval {
