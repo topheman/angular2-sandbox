@@ -7,6 +7,7 @@ import {RouteConfig, Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated
 // containers
 import Home from '../Home/Home.ts';
 import About from '../About/About.ts';
+import ColorInterval from '../ColorInterval/ColorInterval.ts';
 
 // components
 import Header from '../../components/Header/Header.ts';
@@ -30,6 +31,7 @@ import Footer from '../../components/Footer/Footer.ts';
 @RouteConfig([
   { path: '/', name: 'Home', component: Home, useAsDefault: true },
   { path: '/about', name: 'About', component: About },
+  { path: '/color-interval', name: 'ColorInterval', component: ColorInterval },
   { path: '/**', redirectTo: ['Home']}
 ])
 export default class App {

@@ -5,6 +5,9 @@ import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {provide} from '@angular/core';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
+import {provideStore} from '@ngrx/store';
+import colorInterval from './store/reducers/colorInterval.ts';
+
 import {enableProdMode} from '@angular/core';
 
 import App from './containers/App/App.ts';
@@ -50,5 +53,6 @@ if (process.env.DEVTOOLS && process.env.NODE_ENV !== 'production') {
 
 bootstrap(App, [
   ROUTER_PROVIDERS,
-  provide(LocationStrategy, {useClass: HashLocationStrategy})
+  provide(LocationStrategy, {useClass: HashLocationStrategy}),
+  provideStore({colorInterval})
 ]);
