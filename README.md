@@ -4,11 +4,11 @@ angular2-sandbox
 
 <img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/angular-logo.svg" width="200"><img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/webpack-logo.png" width="200"><img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/TypeScript-logo.svg" width="200">
 
-I'm launching this project to get me started with **TypeScript** and **Angular2**. I have already been working with both Angular1 and React, using ES6, Webpack and other tools.
+The goal of this project is to get better at **Angular2**, **TypeScript** and **RxJS**. I have a background on multiple projects with both Angular1 and [React (with Redux)](https://github.com/topheman/react-es6-redux), using Babel / Webpack and other tools.
 
-To bootstrap this project, I've used my own boilerplate [topheman/webpack-babel-starter](https://github.com/topheman/webpack-babel-starter) that I have adapted from Babel / Eslint to TypeScript / TSLint.
+To bootstrap this project, I've used my own boilerplate [topheman/webpack-babel-starter](https://github.com/topheman/webpack-babel-starter) that I have adapted from **Babel** / **Eslint** to **TypeScript** / **TSLint**.
 
-This is a work in progress, I am still discovering TypeScript and Angular2. This project will evolve in the next weeks.
+This is still a work in progress. At this time, I've released an example of **state management** via [@ngrx/store](https://github.com/ngrx/store) (a redux-like in RxJS), coupled with **RxJS Observable streams** wired to **Angular2 components**. The next step will be to add some network requests involved.
 
 I've kept the development workflow **exactly** the same as [topheman/webpack-babel-starter](https://github.com/topheman/webpack-babel-starter)'s (build tasks, deployment ...).
 
@@ -17,7 +17,7 @@ What's in there ?
 * Development / Build / Lint tasks
 * [TypeScript](https://www.typescriptlang.org/) transpiler
 * [TSLint](http://palantir.github.io/tslint/)
-* Angular2 setup
+* [Angular2](https://angular.io/) / [RxJS](https://github.com/ReactiveX/rxjs) / [@ngrx/store](https://github.com/ngrx/store)
 * Sass support
 * Ship a version of your site with sourcemaps (see demo)
 
@@ -57,7 +57,7 @@ All the build tasks will create a built version of the project in the `./build/d
 
 ###Linter
 
-* tslint is running while you're developping, check your console for errors
+* **tslint** is running while you're developping, check your console for errors
 * you can also launch it via `npm run lint`
 * see `tslint.json` for the configuration, inspired by [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter/blob/master/tslint.json)'s
 

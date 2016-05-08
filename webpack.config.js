@@ -1,5 +1,5 @@
 /**
- * Inspired by https://github.com/topheman/react-es6-redux
+ * Inspired by https://github.com/topheman/webpack-babel-starter
  */
 
 const path = require('path');

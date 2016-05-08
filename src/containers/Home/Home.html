@@ -1,7 +1,9 @@
 <div>
-  <p>This is my sandbox project on which I experiment on <strong>Angular2</strong> and <strong>RxJS</strong>, using <strong>TypeScript</strong> and <strong>Webpack</strong>. I've used my own boilerplate <a href="https://github.com/topheman/webpack-babel-starter" title="topheman/webpack-babel-starter on github">topheman/webpack-babel-starter</a> that I ported from <strong>Babel</strong>/<strong>ESLint</strong> to <strong>TypeScript</strong>/<strong>TSLint</strong> to bootstrap the project.</p>
-  <p></p>
-  <p>This is still a work in progress ...</p>
+  <p>This is my sandbox project on which I experiment on <strong>Angular2</strong> and <strong>RxJS</strong>, using <strong>TypeScript</strong> and <strong>Webpack</strong>.</p>
+  <p>I tried to avoid doing the TodoList we tend to always do when trying up new frameworks, you'll find an example with <a [routerLink]="['ColorInterval']" title="Try de demo!">"Color Interval"</a> where I mix up Angular2, RxJS and <strong>@ngrx/store</strong>.</p>
+  <p class="text-center"><a [routerLink]="['ColorInterval']" class="btn btn-primary btn-lg" title="Try some @nrgx/store + RxJS">Try Color Interval</a></p>
+  <p>I've used my own boilerplate <a href="https://github.com/topheman/webpack-babel-starter" title="topheman/webpack-babel-starter on github">topheman/webpack-babel-starter</a> that I ported from <strong>Babel</strong>/<strong>ESLint</strong> to <strong>TypeScript</strong>/<strong>TSLint</strong> to bootstrap this project.</p>
+  <p>If you like this project, take a look at <a href="https://topheman.github.io/rxjs-experiments/" title="topheman/rxjs-experiments">topheman/rxjs-experiments</a>, an RxJS implementation of multi-touch / accelerometer.</p>
   <div *ngIf="DEVTOOLS === false">
     <p>This is the <strong>production packaged</strong> version (html/css/js uglified). You can <a href="./devtools/" title="Test with devtools & sourcemaps" style="font-weight: bold">test the site in debug mode here</a>, where you'll have access to:</p>
     <ul>

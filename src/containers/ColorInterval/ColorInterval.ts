@@ -13,6 +13,8 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
   selector: 'color-interval',
   template: `
 <div class="ColorInterval">
+  <p>The state of the list of items is managed via <a href="https://github.com/ngrx/store" title="@ngrx/store on github">@ngrx/store</a> (a redux-like in RxJS) then shared in real time via <strong>RxJS Observable streams</strong> which are finally wired to <strong>Angular2 components</strong>.</p>
+  <p>Just add some colors in the list, they will then appear at the right time in the log. <small>(Interval can't be lesser than 500ms and will be adjusted).</small></p>
   <form class="form-inline" (submit)="create$.next({color: inputColor.value, interval: inputInterval.value})">
     <div class="form-group">
       <label for="input-color">Color</label>
@@ -20,7 +22,10 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
     </div>
     <div class="form-group">
       <label for="input-intervall">Interval</label>
-      <input #inputInterval id="input-interval" class="form-control" type="number" placeholder="Enter an interval"/>
+      <div class="input-group">
+        <input #inputInterval id="input-interval" class="form-control" type="number" placeholder="Enter an interval"/>
+        <div class="input-group-addon">ms</div>
+      </div>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
     <button type="button" class="btn btn-primary" (click)="create$.next(generateRandomColorInterval())">Random</button>
@@ -61,14 +66,14 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
 </div>`
 })
 export default class ColorInterval {
-  private items;
-  private create$;
-  private delete$;
-  private clearAll$;
+  private items; // @ngrx/store containing the items, passed to Observables for realtime logging
+  private create$; // RxJS Subject connected to the create button - dispatching createItem() action
+  private delete$; // RxJS Subject connected to the delete button - dispatching deleteItem({id}) action
+  private clearAll$; // RxJS Subject connected to the "Clear All" button - dispatching clearAll() action
   private generateRandomColorInterval;
-  private tick$;
+  private tick$; // Observable combining a timer and items, returns a stream of aggregates
   private logs = [];
-  private playing;
+  private playing; // simple boolean to know if the tick$ Observable is started or stoped
   private toggleStartStop;
   constructor(store: Store<any>) {
     this.generateRandomColorInterval = generateRandomColorInterval;
@@ -92,7 +97,7 @@ export default class ColorInterval {
     const subDelete = this.delete$.subscribe(item => store.dispatch(deleteItem(item)));
     const subClearAll = this.clearAll$.subscribe(item => store.dispatch(clearAll()));
     const subTick = this.tick$.subscribe(item => {
-      this.logs = [item, ...this.logs].slice(0, 15);
+      this.logs = [item, ...this.logs].slice(0, 20);
     });
   }
 }
