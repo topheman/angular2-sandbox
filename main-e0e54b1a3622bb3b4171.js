@@ -3,8 +3,8 @@
  * 
  * Angular2 project
  * 
- * @version v0.2.1 - 05/05/2016
- * @revision #a8f373e - https://github.com/topheman/angular2-sandbox/tree/a8f373effb89c8a7533b2dd0d419d5c66626e15e
+ * @version v0.2.1 - 08/05/2016
+ * @revision #dc5fcde - https://github.com/topheman/angular2-sandbox/tree/dc5fcdeafc84e5497ab33d27127bff3773ae0425
  * @author Christophe Rosset <tophe@topheman.com> (http://labs.topheman.com/)
  * @copyright 2016(c) Christophe Rosset <tophe@topheman.com> (http://labs.topheman.com/)
  * @license MIT
