@@ -4,14 +4,14 @@
   <p class="text-center"><a [routerLink]="['ColorInterval']" class="btn btn-primary btn-lg" title="Try some @nrgx/store + RxJS">Try Color Interval</a></p>
   <p>I've used my own boilerplate <a href="https://github.com/topheman/webpack-babel-starter" title="topheman/webpack-babel-starter on github">topheman/webpack-babel-starter</a> that I ported from <strong>Babel</strong>/<strong>ESLint</strong> to <strong>TypeScript</strong>/<strong>TSLint</strong> to bootstrap this project.</p>
   <p>If you like this project, take a look at <a href="https://topheman.github.io/rxjs-experiments/" title="topheman/rxjs-experiments">topheman/rxjs-experiments</a>, an RxJS implementation of multi-touch / accelerometer.</p>
-  <div *ngIf="DEVTOOLS === false">
+  <div *ngIf="DEVTOOLS === false" style="margin-top: 40px;">
     <p>This is the <strong>production packaged</strong> version (html/css/js uglified). You can <a href="./devtools/" title="Test with devtools & sourcemaps" style="font-weight: bold">test the site in debug mode here</a>, where you'll have access to:</p>
     <ul>
       <li>sourcemaps for <code>scss</code>/<code>ts</code></li>
     </ul>
-    <p class="text-center"><a href="./devtools/" title="Test with devtools & sourcemaps" class="btn btn-default btn-primary" style="white-space: pre-wrap">I'm a developer, I want to see what's under the hood!</a></p>
+    <p class="text-center"><a href="./devtools/" title="Test with devtools & sourcemaps" style="white-space: pre-wrap">I'm a developer, I want to see what's under the hood!</a></p>
   </div>
-  <div *ngIf="DEVTOOLS === true">
+  <div *ngIf="DEVTOOLS === true" style="margin-top: 40px;">
     <p>This is the <strong>development packaged</strong> version (<a href="../" title="checkout in production mode">the production version is here</a>). In the current mode, you have access to:</p>
     <ul>
       <li>sourcemaps for scss/ts (open the sources tab of your developer tools)</li>

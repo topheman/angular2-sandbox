@@ -30,10 +30,10 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
     <button type="submit" class="btn btn-default">Submit</button>
     <button type="button" class="btn btn-primary" (click)="create$.next(generateRandomColorInterval())">Random</button>
     <button type="button" class="btn btn-primary" (click)="clearAll$.next()">Clear All</button>
-    <button type="button" class="btn btn-primary pull-right hidden-xs hidden-sm" (click)="toggleStartStop()">{{playing ? 'Stop' : 'Restart'}}</button>
+    <button type="button" [class]="'btn btn-primary pull-right hidden-xs hidden-sm' + (itemsPopulated ? '' : ' disabled')" [disabled]="!itemsPopulated" (click)="toggleStartStop()">{{playing ? 'Stop' : 'Restart'}}</button>
   </form>
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 items-display items-list">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 items-display items-list" *ngIf="itemsPopulated">
       <h4>List</h4>
       <table class="table-condensed table-responsive">
         <thead>
@@ -54,7 +54,7 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
     </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 items-display items-log">
       <h4>Log</h4>
-      <button type="button" class="btn btn-primary hidden-md hidden-lg" (click)="toggleStartStop()">{{playing ? 'Stop' : 'Restart'}}</button>
+      <button type="button" [class]="'btn btn-primary hidden-md hidden-lg' + (itemsPopulated ? '' : ' disabled')" [disabled]="!itemsPopulated" (click)="toggleStartStop()">{{playing ? 'Stop' : 'Restart'}}</button>
       <ul>
         <li *ngFor="let log of logs">
           [<i>{{log.timer}}ms</i>]
@@ -67,17 +67,19 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
 })
 export default class ColorInterval {
   private items; // @ngrx/store containing the items, passed to Observables for realtime logging
+  private itemsPopulated: boolean; // true if items store is populated
   private create$; // RxJS Subject connected to the create button - dispatching createItem() action
   private delete$; // RxJS Subject connected to the delete button - dispatching deleteItem({id}) action
   private clearAll$; // RxJS Subject connected to the "Clear All" button - dispatching clearAll() action
-  private generateRandomColorInterval;
+  private generateRandomColorInterval: Function;
   private tick$; // Observable combining a timer and items, returns a stream of aggregates
   private logs = [];
-  private playing; // simple boolean to know if the tick$ Observable is started or stoped
-  private toggleStartStop;
+  private playing: boolean; // simple boolean to know if the tick$ Observable is started or stoped
+  private toggleStartStop: Function;
   constructor(store: Store<any>) {
     this.generateRandomColorInterval = generateRandomColorInterval;
     this.items = store.select('colorInterval');
+    this.items.subscribe(items => this.itemsPopulated = items.length > 0);
     this.create$ = new Subject();
     this.delete$ = new Subject();
     this.clearAll$ = new Subject();
