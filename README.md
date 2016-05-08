@@ -2,7 +2,7 @@ angular2-sandbox
 ================
 [![Build Status](https://travis-ci.org/topheman/angular2-sandbox.svg?branch=master)](https://travis-ci.org/topheman/angular2-sandbox)
 
-<img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/angular-logo.svg" width="200"><img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/webpack-logo.png" width="200"><img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/TypeScript-logo.svg" width="200">
+<img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/angular-logo.svg" width="200"><img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/rxjs-logo.png" width="200"><img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/webpack-logo.png" width="200"><img src="https://cdn.rawgit.com/topheman/angular2-sandbox/master/src/assets/images/TypeScript-logo.svg" width="200">
 
 The goal of this project is to get better at **Angular2**, **TypeScript** and **RxJS**. I have a background on multiple projects with both Angular1 and [React (with Redux)](https://github.com/topheman/react-es6-redux), using Babel / Webpack and other tools.
 
