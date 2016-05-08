@@ -14,16 +14,16 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
   template: `
 <div class="ColorInterval">
   <p>The state of the list of items is managed via <a href="https://github.com/ngrx/store" title="@ngrx/store on github">@ngrx/store</a> (a redux-like in RxJS) then shared in real time via <strong>RxJS Observable streams</strong> which are finally wired to <strong>Angular2 components</strong>.</p>
-  <p>Just add some colors in the list, they will then appear at the right time in the log. <small>(Interval can't be lesser than 500ms and will be adjusted).</small></p>
+  <p>Just add some colors in the list, they will then appear at the right time in the log. (Interval can't be lesser than <strong>500ms</strong> and will be adjusted).</p>
   <form class="form-inline" (submit)="create$.next({color: inputColor.value, interval: inputInterval.value})">
-    <div class="form-group">
+    <div class="form-group form-group-input-color">
       <label for="input-color">Color</label>
-      <input #inputColor id="input-color" class="form-control" type="text" placeholder="Enter a valid color code"/>
+      <input #inputColor id="input-color" class="form-control" type="text" placeholder="Enter a valid color code (optional)"/>
     </div>
-    <div class="form-group">
-      <label for="input-intervall">Interval</label>
+    <div class="form-group form-group-input-interval">
+      <label for="input-interval">Interval</label>
       <div class="input-group">
-        <input #inputInterval id="input-interval" class="form-control" type="number" placeholder="Enter an interval"/>
+        <input #inputInterval id="input-interval" class="form-control" type="number" placeholder="Enter an interval in ms (optional)"/>
         <div class="input-group-addon">ms</div>
       </div>
     </div>

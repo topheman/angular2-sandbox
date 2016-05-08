@@ -9,3 +9,15 @@
     word-break: break-word;
   }
 }
+
+@media only screen
+and (min-width: $grid-float-breakpoint) {
+  .ColorInterval {
+    .form-group-input-color input.form-control {
+      width: 250px;
+    }
+    .form-group-input-interval .input-group {
+      width: 305px;
+    }
+  }
+}
