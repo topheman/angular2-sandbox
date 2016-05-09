@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "Angular2 project",
   "scripts": {
-    "start": "npm run webpack",
+    "start": "DEVTOOLS=true npm run webpack",
     "test": "npm run lint",
     "lint": "./node_modules/.bin/tslint 'src/**/*.ts'",
     "clean-dist": "node ./bin/clean-dist.js",

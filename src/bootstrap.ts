@@ -51,8 +51,33 @@ if (process.env.DEVTOOLS && process.env.NODE_ENV !== 'production') {
 
 /** This is where the "real code" start */
 
-bootstrap(App, [
+const providers = [
   ROUTER_PROVIDERS,
   provide(LocationStrategy, {useClass: HashLocationStrategy}),
   provideStore({colorInterval})
-]);
+];
+
+// if TypeScript could do conditional imports via require,
+// we wouldn't include all those modules in the final bundle ...
+import {usePreMiddleware, usePostMiddleware, Middleware} from '@ngrx/store';
+
+if (process.env.DEVTOOLS) {
+  // the following acts just like redux middlewares ...
+  // this is the logger middleware
+  const actionLog: Middleware = action => { // action is the store which acts like an observable
+    return action.do(val => { // .do() is only a side-effect, it doesn't affect the value of the stream itself
+      console.group(val.type);
+      console.log('will dispatch', val);
+    });
+  };
+  const stateLog: Middleware = state => {
+    return state.do(val => {
+      console.log('state after dispatch', val);
+      console.groupEnd();
+    });
+  };
+  providers.push(usePreMiddleware(actionLog));
+  providers.push(usePostMiddleware(stateLog));
+}
+
+bootstrap(App, providers);
