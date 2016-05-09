@@ -6,7 +6,7 @@ import {provide} from '@angular/core';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {provideStore} from '@ngrx/store';
-import colorInterval from './store/reducers/colorInterval.ts';
+import reducers from './store/reducers';
 
 import {enableProdMode} from '@angular/core';
 
@@ -54,12 +54,13 @@ if (process.env.DEVTOOLS && process.env.NODE_ENV !== 'production') {
 const providers = [
   ROUTER_PROVIDERS,
   provide(LocationStrategy, {useClass: HashLocationStrategy}),
-  provideStore({colorInterval})
+  provideStore(reducers)
 ];
 
 // if TypeScript could do conditional imports via require,
 // we wouldn't include all those modules in the final bundle ...
 import {usePreMiddleware, usePostMiddleware, Middleware} from '@ngrx/store';
+import {instrumentStore} from '@ngrx/devtools';
 
 if (process.env.DEVTOOLS) {
   // the following acts just like redux middlewares ...
@@ -78,6 +79,9 @@ if (process.env.DEVTOOLS) {
   };
   providers.push(usePreMiddleware(actionLog));
   providers.push(usePostMiddleware(stateLog));
+
+  // this is the devtools part middleware
+  providers.push(instrumentStore());
 }
 
 bootstrap(App, providers);

@@ -17,7 +17,7 @@ What's in there ?
 * Development / Build / Lint tasks
 * [TypeScript](https://www.typescriptlang.org/) transpiler
 * [TSLint](http://palantir.github.io/tslint/)
-* [Angular2](https://angular.io/) / [RxJS](https://github.com/ReactiveX/rxjs) / [@ngrx/store](https://github.com/ngrx/store)
+* [Angular2](https://angular.io/) / [RxJS](https://github.com/ReactiveX/rxjs) / [@ngrx/store](https://github.com/ngrx/store) (with logs/[devtools](https://github.com/ngrx/devtools) for time travel like redux-devtools)
 * Sass support
 * Ship a version of your site with sourcemaps (see demo)
 
@@ -63,7 +63,7 @@ All the build tasks will create a built version of the project in the `./build/d
 
 ###Customizations
 
-You can customize the behavior of the scripts by specifying environments vars:
+You can customize the behavior of the scripts by specifying environments vars like `DEVTOOLS`, `SHOW_DEVTOOLS`, `NODE_ENV` or `LINTER`:
 
 * `NODE_ENV` by default at `development`, `NODE_ENV=production` when you `npm run build-prod`
 * `LINTER=false` will disable the linter (enabled by default, ex: `LINTER=false npm start`)
@@ -71,6 +71,8 @@ You can customize the behavior of the scripts by specifying environments vars:
 * `FAIL_ON_ERROR=true` will break the build if any errors occurs (useful for CIs such as travis - at `false` in dev-server, at `true` when building)
 * `LOCALHOST=false` to access via IP from other devices on the same network (ex: `LOCALHOST=false npm start` - default `true`)
 * `DEVTOOLS`: By default at `null`. Used internally by `npm run build-prod-all` (you may not need that if you don't do OSS)
+* `SHOW_DEVTOOLS=false npm start` lets you run with the devtools closed by default
+* `DEVTOOLS npm run webpack` lets you run without the devtools
 
 ###More
 

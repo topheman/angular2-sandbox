@@ -7,14 +7,17 @@
   <div *ngIf="DEVTOOLS === false" style="margin-top: 40px;">
     <p>This is the <strong>production packaged</strong> version (html/css/js uglified). You can <a href="./devtools/" title="Test with devtools & sourcemaps" style="font-weight: bold">test the site in debug mode here</a>, where you'll have access to:</p>
     <ul>
-      <li>sourcemaps for <code>scss</code>/<code>ts</code></li>
+      <li>sourcemaps for <code>.scss</code>/<code>.ts</code></li>
+      <li><a href="https://github.com/ngrx/devtools" title="ngrx/devtools, a redux-devtools like for ngrx/store">ngrx/devtools</a> (a redux-devtools like for ngrx/store that will let you do time travel)</li>
     </ul>
     <p class="text-center"><a href="./devtools/" title="Test with devtools & sourcemaps" style="white-space: pre-wrap">I'm a developer, I want to see what's under the hood!</a></p>
   </div>
   <div *ngIf="DEVTOOLS === true" style="margin-top: 40px;">
     <p>This is the <strong>development packaged</strong> version (<a href="../" title="checkout in production mode">the production version is here</a>). In the current mode, you have access to:</p>
     <ul>
-      <li>sourcemaps for scss/ts (open the sources tab of your developer tools)</li>
+      <li>sourcemaps for <code>.scss</code>/<code>.ts</code> (open the sources tab of your developer tools)</li>
+      <li><a href="https://github.com/ngrx/devtools" title="ngrx/devtools, a redux-devtools like for ngrx/store">ngrx/devtools</a> (the panel on the right)</li>
+      <li>if you open the console, you'll see the actions dispatched by the store</li>
     </ul>
     <p>Those features are meant to be used only in the development but I felt it would be a great way to let you discover them.</p>
   </div>

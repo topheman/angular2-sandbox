@@ -15,6 +15,8 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
 <div class="ColorInterval">
   <p>The state of the list of items is managed via <a href="https://github.com/ngrx/store" title="@ngrx/store on github">@ngrx/store</a> (a redux-like in RxJS) then shared in real time via <strong>RxJS Observable streams</strong> which are finally wired to <strong>Angular2 components</strong>.</p>
   <p>Just add some colors in the list, they will then appear at the right time in the log. (Interval can't be lesser than <strong>500ms</strong> and will be adjusted).</p>
+  <p *ngIf="DEVTOOLS">You're in <code>DEVTOOLS</code> mode. <code>ctrl+H</code> to hide the panel on the right, which works just like redux-devtools and lets you time travel.</p>
+  <p *ngIf="DEVTOOLS">If you open your console, you'll see the actions dispatched logged and you'll also be able to access TypeScript original source code via the Sources panel.</p>
   <form class="form-inline" (submit)="create$.next({color: inputColor.value, interval: inputInterval.value})">
     <div class="form-group form-group-input-color">
       <label for="input-color">Color</label>
@@ -66,6 +68,7 @@ import {compileTickObservable}  from '../../store/observables/tick.ts';
 </div>`
 })
 export default class ColorInterval {
+  private DEVTOOLS = process.env.DEVTOOLS;
   private items; // @ngrx/store containing the items, passed to Observables for realtime logging
   private itemsPopulated: boolean; // true if items store is populated
   private create$; // RxJS Subject connected to the create button - dispatching createItem() action
