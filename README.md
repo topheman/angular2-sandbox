@@ -1,6 +1,6 @@
 ##angular2-sandbox - distribution version (gh-pages branch)
 
-This is the distribution version of [topheman/angular2-sandbox](https://github.com/topheman/angular2-sandbox) - v0.3.0 - [#f67ca1c](https://github.com/topheman/angular2-sandbox/tree/f67ca1c458855c1defa1dd5da31d7514f688981b).
+This is the distribution version of [topheman/angular2-sandbox](https://github.com/topheman/angular2-sandbox) - v0.3.1 - [#69a0d79](https://github.com/topheman/angular2-sandbox/tree/69a0d7982ecb1fd05ef359b31342419f95516144).
 
 **Warning**: This is the **generated** code, versionned on the `gh-pages` branch, testable online [here](https://topheman.github.io/angular2-sandbox/). If you wish to see the original source code, switch to the [master branch](https://github.com/topheman/angular2-sandbox).
 
