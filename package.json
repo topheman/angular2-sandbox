@@ -1,6 +1,6 @@
 {
   "name": "angular2-sandbox",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Angular2 project",
   "scripts": {
     "start": "DEVTOOLS=true npm run webpack",
