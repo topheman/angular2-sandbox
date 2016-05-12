@@ -6,4 +6,5 @@ before_script:
   - npm ls --depth=0
 script:
   - npm run build-prod-all
+  - AWESOME_LOADER=false npm run build-prod-all
   - npm test

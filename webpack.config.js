@@ -11,8 +11,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const myLocalIp = require('my-local-ip');
 const common = require('./common');
 
-const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
-
 const plugins = [];
 
 const BANNER = common.getBanner();
@@ -39,6 +37,9 @@ const LOCALHOST = process.env.LOCALHOST ? JSON.parse(process.env.LOCALHOST) : tr
 const ASSETS_LIMIT = typeof process.env.ASSETS_LIMIT !== 'undefined' ? parseInt(process.env.ASSETS_LIMIT, 10) : 5000;// limit bellow the assets will be inlines
 const hash = (NODE_ENV === 'production' && DEVTOOLS ? '-devtools' : '') + (NODE_ENV === 'production' ? '-[hash]' : '');
 
+// using awesome-typescript-loader for better perf in watch mode in development phase, can be disabled
+const AWESOME_LOADER = process.env.AWESOME_LOADER ? JSON.parse(process.env.AWESOME_LOADER) : true;
+
 /** integrity checks */
 
 if (/^\w+/.test(DIST_DIR) === false || /\/$/.test(DIST_DIR) === true) { // @todo make a better regexp that accept valid unicode leading chars
@@ -47,6 +48,7 @@ if (/^\w+/.test(DIST_DIR) === false || /\/$/.test(DIST_DIR) === true) { // @todo
 }
 
 log.info('webpack', `${NODE_ENV.toUpperCase()} mode`);
+log.info('webpack', 'Using ' + (AWESOME_LOADER ? 'awesome-typescript-loader' : 'ts-loader') );
 if (DEVTOOLS) {
   log.info('webpack', 'DEVTOOLS active');
 }
@@ -93,7 +95,10 @@ plugins.push(new webpack.DefinePlugin({
 
 // Do type checking in a separate process, so webpack don't need to wait.
 // https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
-plugins.push(new ForkCheckerPlugin());
+if (AWESOME_LOADER) {
+  const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+  plugins.push(new ForkCheckerPlugin());
+}
 
 if (OPTIMIZE) {
   plugins.push(new webpack.optimize.DedupePlugin());
@@ -180,7 +185,7 @@ const config = {
       {
         test: /\.ts$/,
         exclude: [/\.(spec|e2e)\.ts$/],
-        loader: 'awesome-typescript-loader'
+        loader: (AWESOME_LOADER ? 'awesome-typescript-loader' : 'ts-loader')
       },
       {
         test: /\.json$/,

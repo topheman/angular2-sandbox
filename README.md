@@ -73,6 +73,7 @@ You can customize the behavior of the scripts by specifying environments vars li
 * `DEVTOOLS`: By default at `null`. Used internally by `npm run build-prod-all` (you may not need that if you don't do OSS)
 * `SHOW_DEVTOOLS=false npm start` lets you run with the devtools closed by default
 * `DEVTOOLS npm run webpack` lets you run without the devtools
+* By default the project is using [awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader) (for better performance in development with watch mode and other things), you can get back to [ts-loader](https://github.com/TypeStrong/ts-loader), just setting `AWESOME_LOADER=false` - ex: `AWESOME_LOADER=false npm start`
 
 ###More
 
