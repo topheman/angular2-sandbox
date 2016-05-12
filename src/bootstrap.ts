@@ -59,29 +59,33 @@ const providers = [
 
 // if TypeScript could do conditional imports via require,
 // we wouldn't include all those modules in the final bundle ...
-import {usePreMiddleware, usePostMiddleware, Middleware} from '@ngrx/store';
-import {instrumentStore} from '@ngrx/devtools';
+import ngRxStore = require('@ngrx/store');
+import ngRxDevtools = require('@ngrx/devtools');
 
 if (process.env.DEVTOOLS) {
+  const ngRxStore = require('@ngrx/store');
+  const ngRxDevtools = require('@ngrx/devtools');
   // the following acts just like redux middlewares ...
   // this is the logger middleware
-  const actionLog: Middleware = action => { // action is the store which acts like an observable
+  const actionLog: ngRxStore.Middleware = action => { // action is the store which acts like an observable
     return action.do(val => { // .do() is only a side-effect, it doesn't affect the value of the stream itself
       console.group(val.type);
       console.log('will dispatch', val);
     });
   };
-  const stateLog: Middleware = state => {
+  const stateLog: ngRxStore.Middleware = state => {
     return state.do(val => {
       console.log('state after dispatch', val);
       console.groupEnd();
     });
   };
-  providers.push(usePreMiddleware(actionLog));
-  providers.push(usePostMiddleware(stateLog));
+  providers.push(<any>ngRxStore.usePreMiddleware(actionLog));
+  providers.push(<any>ngRxStore.usePostMiddleware(stateLog));
 
   // this is the devtools part middleware
-  providers.push(instrumentStore());
+  providers.push(<any>ngRxDevtools.instrumentStore());
 }
 
 bootstrap(App, providers);
+
+/// <reference path="../node_modules/@angular/core/src/di/provider.d.ts" />
