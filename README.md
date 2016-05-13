@@ -55,6 +55,8 @@ All the build tasks will create a built version of the project in the `./build/d
 
 `npm run serve-dist` will serve your `./build/dist` folder at [http://localhost:3000](http://localhost:3000) so that you could test the built version you just made.
 
+Development modules such as `ngrx/devtools` or any loggers that are used to enhance developer's experience won't even be part of the final production bundle. They will be dropped after compilation step, thanks to `webpack.DefinePlugin`. This isn't as straightforward and clean as with webpack/Babel/ES6 (because of TypeScript typing system and Angular decorators) - [see the issue](https://github.com/topheman/angular2-sandbox/issues/1).
+
 ###Linter
 
 * **tslint** is running while you're developping, check your console for errors

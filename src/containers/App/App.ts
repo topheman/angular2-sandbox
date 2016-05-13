@@ -12,6 +12,9 @@ import ColorInterval from '../ColorInterval/ColorInterval.ts';
 import Header from '../../components/Header/Header.ts';
 import Footer from '../../components/Footer/Footer.ts';
 
+// only import this module for typing - will be removed during TypeScript compilation since not directly used
+import ngRxDevtools = require('@ngrx/devtools');
+
 // default template, without devtools
 let template = `
 <topheman-header title="Angular2 Sandbox"></topheman-header>
@@ -19,10 +22,6 @@ let template = `
   <router-outlet></router-outlet>
 </div>
 <topheman-footer></topheman-footer>`;
-
-// if TypeScript could do conditional imports via require,
-// we wouldn't include all those modules in the final bundle ...
-import {Devtools} from '@ngrx/devtools';
 
 if (process.env.DEVTOOLS) {
   /* tslint:disable */
@@ -51,9 +50,18 @@ if (process.env.DEVTOOLS) {
     ROUTER_DIRECTIVES,
     Header,
     Footer
-  ].concat(process.env.DEVTOOLS ? [ // TypeScript doesn't let us prepare an array of directives outside of the Component decorator ... :(
-    Devtools
-  ] : [])
+  ].concat((() => {
+    // TypeScript doesn't let us prepare an array of directives outside of the Component decorator ... :(
+    // Thanks to webpack DefinePlugin, the following will be dropped at transpilation if process.env.DEVTOOLS === false
+    // any modules required in it won't be part of the bundle
+    if (process.env.DEVTOOLS) {
+      /* tslint:disable */ // tslint complaining about variable not being in camelcase or uppercase
+      const {Devtools} = <typeof ngRxDevtools>require('@ngrx/devtools'); // this needs to be typed (yeah this is TypeScript! ;) )
+      return [Devtools];
+      /* tslint:enable */
+    }
+    return [];
+  })())
 })
 @RouteConfig([
   { path: '/', name: 'Home', component: Home, useAsDefault: true },

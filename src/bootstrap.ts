@@ -10,6 +10,10 @@ import reducers from './store/reducers';
 
 import {enableProdMode} from '@angular/core';
 
+// only import this module for typing - will be removed during TypeScript compilation since not directly used
+import ngRxStore = require('@ngrx/store');
+import ngRxDevtools = require('@ngrx/devtools');
+
 import App from './containers/App/App.ts';
 
 /* This is how you use the environments variables passed by the webpack.DefinePlugin */
@@ -57,15 +61,12 @@ const providers = [
   provideStore(reducers)
 ];
 
-// if TypeScript could do conditional imports via require,
-// we wouldn't include all those modules in the final bundle ...
-import ngRxStore = require('@ngrx/store');
-import ngRxDevtools = require('@ngrx/devtools');
-
+// Thanks to webpack DefinePlugin, the following will be dropped at transpilation if process.env.DEVTOOLS === false
+// any modules required in it won't be part of the bundle
 if (process.env.DEVTOOLS) {
-  const ngRxStore = require('@ngrx/store');
-  const ngRxDevtools = require('@ngrx/devtools');
-  // the following acts just like redux middlewares ...
+  // any module required needs to be typed - yeah, this is TypeScript ;) !
+  const {usePreMiddleware, usePostMiddleware} = <typeof ngRxStore>require('@ngrx/store');
+  const {instrumentStore} = <typeof ngRxDevtools>require('@ngrx/devtools');
   // this is the logger middleware
   const actionLog: ngRxStore.Middleware = action => { // action is the store which acts like an observable
     return action.do(val => { // .do() is only a side-effect, it doesn't affect the value of the stream itself
@@ -79,13 +80,11 @@ if (process.env.DEVTOOLS) {
       console.groupEnd();
     });
   };
-  providers.push(<any>ngRxStore.usePreMiddleware(actionLog));
-  providers.push(<any>ngRxStore.usePostMiddleware(stateLog));
+  providers.push(usePreMiddleware(actionLog));
+  providers.push(usePostMiddleware(stateLog));
 
   // this is the devtools part middleware
-  providers.push(<any>ngRxDevtools.instrumentStore());
+  providers.push(instrumentStore());
 }
 
 bootstrap(App, providers);
-
-/// <reference path="../node_modules/@angular/core/src/di/provider.d.ts" />
