@@ -3,8 +3,8 @@
  * 
  * Angular2 project
  * 
- * @version v0.3.1 - 10/05/2016
- * @revision #69a0d79 - https://github.com/topheman/angular2-sandbox/tree/69a0d7982ecb1fd05ef359b31342419f95516144
+ * @version v0.3.2 - 13/05/2016
+ * @revision #378af6d - https://github.com/topheman/angular2-sandbox/tree/378af6d2087fea6b37f4bd724eb38270e9328258
  * @author Christophe Rosset <tophe@topheman.com> (http://labs.topheman.com/)
  * @copyright 2016(c) Christophe Rosset <tophe@topheman.com> (http://labs.topheman.com/)
  * @license MIT
@@ -9146,12 +9146,12 @@
 	    core_1.provide(common_1.LocationStrategy, { useClass: common_1.HashLocationStrategy }),
 	    store_1.provideStore(reducers_1.default)
 	];
-	// if TypeScript could do conditional imports via require,
-	// we wouldn't include all those modules in the final bundle ...
-	var store_2 = __webpack_require__(581);
-	var devtools_1 = __webpack_require__(859);
+	// Thanks to webpack DefinePlugin, the following will be dropped at transpilation if process.env.DEVTOOLS === false
+	// any modules required in it won't be part of the bundle
 	if (true) {
-	    // the following acts just like redux middlewares ...
+	    // any module required needs to be typed - yeah, this is TypeScript ;) !
+	    var _a = __webpack_require__(581), usePreMiddleware = _a.usePreMiddleware, usePostMiddleware = _a.usePostMiddleware;
+	    var instrumentStore = __webpack_require__(859).instrumentStore;
 	    // this is the logger middleware
 	    var actionLog = function (action) {
 	        return action.do(function (val) {
@@ -9165,10 +9165,10 @@
 	            console.groupEnd();
 	        });
 	    };
-	    providers.push(store_2.usePreMiddleware(actionLog));
-	    providers.push(store_2.usePostMiddleware(stateLog));
+	    providers.push(usePreMiddleware(actionLog));
+	    providers.push(usePostMiddleware(stateLog));
 	    // this is the devtools part middleware
-	    providers.push(devtools_1.instrumentStore());
+	    providers.push(instrumentStore());
 	}
 	platform_browser_dynamic_1.bootstrap(App_ts_1.default, providers);
 	
@@ -54454,9 +54454,6 @@
 	var Footer_ts_1 = __webpack_require__(857);
 	// default template, without devtools
 	var template = "\n<topheman-header title=\"Angular2 Sandbox\"></topheman-header>\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>\n<topheman-footer></topheman-footer>";
-	// if TypeScript could do conditional imports via require,
-	// we wouldn't include all those modules in the final bundle ...
-	var devtools_1 = __webpack_require__(859);
 	if (true) {
 	    /* tslint:disable */
 	    console.info('ngrx/devtools are active, to hide the panel: ctrl+H, to change position: ctrl+Q - for more infos', 'https://github.com/ngrx/devtools');
@@ -54483,9 +54480,17 @@
 	                router_deprecated_1.ROUTER_DIRECTIVES,
 	                Header_ts_1.default,
 	                Footer_ts_1.default
-	            ].concat( true ? [
-	                devtools_1.Devtools
-	            ] : [])
+	            ].concat((function () {
+	                // TypeScript doesn't let us prepare an array of directives outside of the Component decorator ... :(
+	                // Thanks to webpack DefinePlugin, the following will be dropped at transpilation if process.env.DEVTOOLS === false
+	                // any modules required in it won't be part of the bundle
+	                if (true) {
+	                    /* tslint:disable */ // tslint complaining about variable not being in camelcase or uppercase
+	                    var Devtools = __webpack_require__(859).Devtools; // this needs to be typed (yeah this is TypeScript! ;) )
+	                    return [Devtools];
+	                }
+	                return [];
+	            })())
 	        }),
 	        router_deprecated_1.RouteConfig([
 	            { path: '/', name: 'Home', component: Home_ts_1.default, useAsDefault: true },
@@ -67548,4 +67553,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=bundle-devtools-d1e6db458dfa9d556455.js.map
+//# sourceMappingURL=bundle-devtools-f33efb4a97e1cce69347.js.map
