@@ -66,7 +66,7 @@ const providers = [
 if (process.env.DEVTOOLS) {
   // any module required needs to be typed - yeah, this is TypeScript ;) !
   const {usePreMiddleware, usePostMiddleware} = <typeof ngRxStore>require('@ngrx/store');
-  const {instrumentStore} = <typeof ngRxDevtools>require('@ngrx/devtools');
+  const {instrumentStore, devtoolsConfig} = <typeof ngRxDevtools>require('@ngrx/devtools');
   // this is the logger middleware
   const actionLog: ngRxStore.Middleware = action => { // action is the store which acts like an observable
     return action.do(val => { // .do() is only a side-effect, it doesn't affect the value of the stream itself
@@ -85,6 +85,11 @@ if (process.env.DEVTOOLS) {
 
   // this is the devtools part middleware
   providers.push(instrumentStore());
+  providers.push(devtoolsConfig({
+    position: 'right',
+    visible: process.env.SHOW_DEVTOOLS,
+    size: 0.3
+  }));
 }
 
 bootstrap(App, providers);

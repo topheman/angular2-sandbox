@@ -28,6 +28,7 @@ const BUILD_DIR = './build';
 const DIST_DIR = process.env.DIST_DIR || 'dist';// relative to BUILD_DIR
 const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
 const DEVTOOLS = process.env.DEVTOOLS ? JSON.parse(process.env.DEVTOOLS) : null;// can be useful in case you have web devtools (null by default to differentiate from true or false)
+const SHOW_DEVTOOLS = process.env.SHOW_DEVTOOLS ? JSON.parse(process.env.SHOW_DEVTOOLS) : true;
 // optimize in production by default - otherwize, override with OPTIMIZE=false flag (if not optimized, sourcemaps will be generated)
 const OPTIMIZE = process.env.OPTIMIZE ? JSON.parse(process.env.OPTIMIZE) : NODE_ENV === 'production';
 const LINTER = process.env.LINTER ? JSON.parse(process.env.LINTER) : true;
@@ -89,6 +90,7 @@ plugins.push(new webpack.DefinePlugin({
   'process.env':{
     'NODE_ENV': JSON.stringify(NODE_ENV),
     'DEVTOOLS': DEVTOOLS, // You can rely on this var in your code to enable specific features only related to development (that are not related to NODE_ENV)
+    'SHOW_DEVTOOLS': SHOW_DEVTOOLS,
     'LINTER': LINTER // You can choose to log a warning in dev if the linter is disabled
   }
 }));
